@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:OilSelector"
+             x:Class="OilSelector.MainPage"
+             >
+
+    <ContentPage.Content>
+        <RelativeLayout x:Name="relLayout" BackgroundColor="White">
+            <Image x:Name="imgLogoWelcome" Source="cannon_logo_welcome.png" Margin="40"
+                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
+                    RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}"/>
+
+            <StackLayout x:Name="stkTop" Orientation="Horizontal" HeightRequest="70" BackgroundColor="#DF3236" IsVisible="False" 
+                             RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}">
+                <Image x:Name="imgLogoTop" Source="cannon_logo_top.png" Margin="10,15,10,15"/>
+            </StackLayout>
+            
+            <ScrollView x:Name="scrollView" IsVisible="False" BackgroundColor="White"
+                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Y, Constant=70}"
+                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1, Constant=-70}">
+                <ScrollView.Padding>
+                    <OnPlatform x:TypeArguments="Thickness"
+                                    iOS="20, 40, 20, 20"
+                                    Android="20, 20, 20, 20"
+                                    WinPhone="20, 20, 20, 20" />
+                </ScrollView.Padding>
+                
+                <StackLayout x:Name="stkLayout" 
+                            VerticalOptions="FillAndExpand"
+                            HorizontalOptions="FillAndExpand"
+                            Orientation="Vertical"
+                            Spacing="10">
+                    <Label Text="Instrument" />
+                    <Picker x:Name="pkInstruments" SelectedIndexChanged="PkInstruments_SelectedIndexChanged" />
+                    <Label Text="Temperature (°C)"/>
+                    <Picker x:Name="pkTemperatures" SelectedIndexChanged="PkTemperatures_SelectedIndexChanged" />
+                    <Label Text="Low Range (cSt)"/>
+                    <Entry x:Name="txtLowRange" Unfocused="TxtLowRange_Unfocused"/>
+                    <Label Text="High Range (cSt)"/>
+                    <Entry x:Name="txtHighRange" Unfocused="TxtHighRange_Unfocused"/>
+                    <Button x:Name="btnFindOils" Text="Find Oils" IsEnabled="false" Clicked="BtnFindOils_Clicked" />
+
+                    <TableView x:Name="tblOils" Intent="Data" IsVisible="False" VerticalOptions="FillAndExpand" RowHeight="50"/>
+                    
+                    <Label x:Name="lblContact" HorizontalOptions="CenterAndExpand"  LineBreakMode="WordWrap" 
+                           Text="Select the oils you would like to purchase to calibrate your tube." IsVisible="False"/>
+                    
+                    <Button x:Name="btnPurchaseOilsOnline" Text="Purchase Oils Online" IsVisible="False" Clicked="BtnPurchaseOilsOnline_Clicked"/>
+
+                    <!--
+                    <Label x:Name="lblContact" HorizontalOptions="CenterAndExpand"  LineBreakMode="WordWrap" 
+                           Text="Call us at (814)-353-8000 or visit our website to order your oil standards today." IsVisible="False"/>
+                    <Label x:Name="lblCookies" FontSize="Small"/>
+                    <WebView x:Name="webView" HeightRequest="300" HorizontalOptions="FillAndExpand" Navigated="webView_Navigated"/>
+                    -->
+                </StackLayout>
+            </ScrollView>
+
+            <StackLayout x:Name="stkOverlay" BackgroundColor="Black" Opacity="0.2" IsVisible="False"
+                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"/>
+
+            <Image x:Name="imgSpinner" Source="spinner.png"  
+                   RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.5, Constant=-15}"
+                   RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.5, Constant=-15}"/>
+
+            <StackLayout x:Name="stkWebNav" Orientation="Horizontal" HeightRequest="70" BackgroundColor="#D2D2D2" IsVisible="False" 
+                             RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}">
+                <Button Text="Back" WidthRequest="80" Margin="10" Clicked="BackWeb_Button_Clicked"/>
+            </StackLayout>
+
+            <WebView x:Name="webView" IsVisible="False" Navigated="WebView_Navigated"
+                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Y, Constant=70}"
+                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1, Constant=-70}"/>
+        </RelativeLayout>
+    </ContentPage.Content>
+</ContentPage>
