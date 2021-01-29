@@ -27,7 +27,7 @@ from adapt.intent import IntentBuilder
 class WinstonFallback(FallbackSkill):
 
     def __init__(self):
-        super(WinstonFallback, self).__init__(name='AimlFallback')
+        super(WinstonFallback, self).__init__(name='WinstonFallback')
         self.kernel = aiml.Kernel()
         self.aiml_path = os.path.join(dirname(__file__), 'aiml')
         self.brain_path = os.path.join(self.file_system.path,
@@ -41,7 +41,7 @@ class WinstonFallback(FallbackSkill):
         self.brain_loaded = False
 
     def initialize(self):
-        self.register_fallback(self.handle_fallback, 90)
+        self.register_fallback(self.handle_fallback, 10)
         return
 
     def load_brain(self):
@@ -73,7 +73,7 @@ class WinstonFallback(FallbackSkill):
         self.kernel.setBotPredicate("master", "the community")
         # IDEA: extract age from
         # https://api.github.com/repos/MycroftAI/mycroft-core created_at date
-        self.kernel.setBotPredicate("age", "2")
+        self.kernel.setBotPredicate("age", "20")
 
         self.brain_loaded = True
         return
